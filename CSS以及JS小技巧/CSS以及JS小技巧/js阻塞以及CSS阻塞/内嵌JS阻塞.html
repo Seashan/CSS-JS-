@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>内嵌JS会阻塞页面上的所有内容的呈现</title>
+</head>
+<body>
+<div>
+<ul>
+    <li>blogjavaspan style="color: #800000;"</li>
+    <li>CSDNspan style="color: #800000;"</li>
+    <li>博客园span style="color: #800000;"</li>
+    <li>ABCspan style="color: #800000;"</li>
+    <li>AAAspan style="color: #800000;"</li>
+</ul>
+<span style="color: #800000;"></span>
+</div>
+<script type="text/javascript">
+// 循环5秒钟
+var n = Number(new Date());
+var n2 = Number(new Date());
+while((n2 - n) < (6*1000)){
+n2 = Number(new Date());
+}
+</script>
+
+<ul>
+    <li>MSNspan style="color: #800000;"</li>
+    <li>GOOGLEspan style="color: #800000;"</li>
+    <li>YAHOOspan style="color: #800000;"</li>
+</ul>
+
+</body>
+</html>

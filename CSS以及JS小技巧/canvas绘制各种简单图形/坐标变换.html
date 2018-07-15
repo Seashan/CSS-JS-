@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>canvas</title>
+</head>
+<body>
+<canvas width="1000" height="1000" id="canvas"></canvas>
+<script type="text/javascript">
+    var canvas = document.getElementById("canvas");
+    var context = canvas.getContext("2d");
+    context.fillStyle = "#eeeeff";
+    context.fillRect(0,0,400,400);
+    context.translate(250,50);
+    context.fillStyle = "rgba(255,0,0,0.5)";
+    for(var i= 0;i<50;i++){
+        context.translate(25,25);
+        context.scale(0.95,0.95);
+        context.rotate(Math.PI/10);
+        context.fillRect(0,0,100,50);
+    }
+</script>
+</body>
+</html>

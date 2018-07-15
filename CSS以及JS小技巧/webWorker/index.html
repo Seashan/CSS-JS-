@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+
+    /**
+     * Created by heshan on 2017/4/12.
+     */
+ /*   var worker=new Worker('webWorker.js');
+    worker.postMessage("hello");
+    worker.addEventListener('message',function(evt){
+        console.log(evt.data);
+    })*/
+    //这里创建一个webworker就是开一个新的线程
+    var worker=new Worker('webWorker.js');//创建子线程
+    //这里接收新的线程传来的data
+    worker.onmessage = function(event) {
+        console.log(event.data);
+    };
+    //这个将会触发向子进程的请求
+    worker.postMessage("begin");
+
+    //构造一个无限循环
+ /*setTimeout(function () { while (true) { } }, 1000);*/
+</script>
+</body>
+</html>

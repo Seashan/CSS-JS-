@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>canvas</title>
+</head>
+<body>
+<canvas width="500" height="500" id="canvas"></canvas>
+<script type="text/javascript">
+    var canvas = document.getElementById("canvas");
+    var context = canvas.getContext("2d");
+    context.fillStyle = "#eeeeff";
+    context.fillRect(0,0,400,400);
+    context.fillStyle = "red";
+    context.fillRect(0,0,60,60);
+
+    var url = canvas.toDataURL("image/jpg")
+    var a = document.createElement("a");
+    a.href = url;
+    a.download ="img.jpg";/*html5的新特性点击后可以实现下载的效果*/
+    a.text = "下载"
+    document.body.appendChild(a);
+</script>
+</body>
+</html>

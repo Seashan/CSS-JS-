@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script type="text/javascript">
+
+  /*  function a(x,y,z){
+        return x+y+z;
+    }*//*柯里化：将多参数的函数分解为单个参数的函数*/
+    function a (x) {
+       return {
+           b: function b(y) {
+               return{
+                   c: function c(z) {
+                       return x+y+z;
+                   }
+               }
+
+        }
+       }
+    }
+   console.log(a(5).b(6).c(7))
+</script>
+</body>
+</html>

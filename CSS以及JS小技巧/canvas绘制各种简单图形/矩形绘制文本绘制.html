@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>canvas</title>
+</head>
+<body>
+ <canvas width="600" height="600" id="canvas"></canvas>
+<script type="text/javascript">
+    var canvas = document.getElementById("canvas");
+    var context = canvas.getContext("2d");
+    /*矩形绘制*/
+    context.fillStyle = "red";
+    context.fillRect(0,0,50,50);
+
+    context.strokeStyle = "blue";
+    context.translate(0,60);
+    context.strokeRect(0,0,50,50);
+
+    /*文本绘制*/
+    context.translate(60,0);
+    context.font = "italic 20px sans-serif";
+    context.textAlign = "left";
+    context.textBaseline = "top";
+    context.strokeText("canvas绘图",0,0);
+    context.fillText("canvas写文字",0,25);
+    var text = context.measureText("canvas");
+    context.fillText(text.width,0,45)
+
+
+    /*绘制圆和椭圆是采用的路径进行绘制的，要注意将路径关闭，不然绘制的起点会粘连*/
+    /*圆形绘制*/
+    context.translate(0,130);
+    context.fillStyle = "green";
+    context.arc(30,30,50,0,Math.PI*2,true);
+    context.fill();
+
+    /*绘制椭圆*/
+    context.translate(0,100);
+    context.beginPath();
+    context.ellipse(30,40,40,50,30,0,Math.PI*2,true);
+    context.closePath();
+    context.fill();
+</script>
+</body>
+</html>

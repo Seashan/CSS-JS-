@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>css制作椭圆</title>
+    <style>
+        /*利用border-radius以及设置狂傲不等就可以实现椭圆，border-radius为100%和50%的区别在于，
+        当设置100%是如果圆角的宽度超过图形的宽高，则需要浏览器自行将圆角进行缩放使得刚好符合正方形，
+        所以为了避免不必要的计算可以尽量使用50%
+        */
+        .ellipse{
+            width: 200px;
+            height: 100px;
+            background-color: red;
+            border-radius:100%;
+            -o-border-radius:100%;
+            -ms-border-radius:100%;
+            -moz-border-radius:100%;
+            -webkit-border-radius:100%;
+        }
+    </style>
+</head>
+<body>
+<div class="ellipse"></div>
+</body>
+</html>

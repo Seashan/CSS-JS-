@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        #one{
+            width:400px;
+            height:400px;
+            border:2px solid red;
+        }
+        #two{
+            width:300px;
+            height:300px;
+            border:2px solid blue;
+        }
+        #three{
+            width:200px;
+            height:200px;
+            border:2px solid chartreuse;
+        }
+        #four{
+            width:100px;
+            height:100px;
+            border:2px solid rosybrown;
+        }
+    </style>
+</head>
+<body>
+<div id='one'>
+    <div id='two'>
+        <div id='three'>
+            <div id='four'>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type='text/javascript'>
+    var one=document.getElementById('one');
+    var two=document.getElementById('two');
+    var three=document.getElementById('three');
+    var four=document.getElementById('four');
+    /*addEventListener的第三个参数表示的是当前的事件函数是发生在哪个阶段，
+    true表示发生在捕获阶段，false表示冒泡阶段，默认false。
+    在非IE8及以下的浏览器中，W3Cg规定事件都是默认的会：有捕获（自上而下）-》目标元素-》冒泡的阶段（自下而上）的
+    事件blur,focus,mouseenter,mouseleave不支持事件的冒泡
+    */
+    one.addEventListener('click',function(){
+        alert('one,capture');
+    },true);
+    one.addEventListener('click',function(){
+        alert('one,bubble');
+    },false);
+    /*同一个元素上绑定的两个相同的事件发生在不同的阶段，
+    (1)点击的是two时事件的发生顺序;目标元素的事情按顺序执行(添加的顺序)，而其他元素根据W3C的标准执行，即先捕获后冒泡。
+    当点击的是two时，则结果是：one,capture/two,bubble/two,capture/one,bubble;
+    (2)如果点击的是three，则结果为：one/two,capture/three,capture/two,bubble
+    */
+    two.addEventListener('click',function(){
+        alert('two,bubble');
+    },false);
+    two.addEventListener('click',function(){
+        alert('two,capture');
+    },true);
+    three.addEventListener('click',function(){
+        alert('three,capture');
+    },true);
+    four.addEventListener('click',function(){
+        alert('four');
+    },true);
+</script>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        tr:nth-child(2n+1){
+            background:white ;
+        }
+        tr:nth-child(2n){
+            background: gray;
+        }
+        tr:hover{
+            background: yellow;
+        }
+    </style>
+</head>
+<body>
+ <table class="table">
+     <tr>
+         <td>阅读</td>
+         <td>阅读</td>
+     </tr>
+     <tr>
+         <td>书籍</td>
+         <td>书籍</td>
+     </tr>
+     <tr>
+         <td>爱好</td>
+         <td>爱好</td>
+     </tr>
+ </table>
+</body>
+<script type="text/javascript">
+    function traverse(node,obj) {
+         node = node || document.body;
+         obj = obj || {};
+        if(obj[node.nodeName] === undefined){
+            obj[node.nodeName] = 1;
+        }
+        else{
+            obj[node.nodeName]++;
+        }
+         if(node.childElementCount === 0)
+         {
+             return;
+         }
+         var child = node.firstElementChild;
+        while(child){
+             traverse(child,obj);
+             child = child.nextElementSibling;
+        }
+        return obj;
+    }
+   var res = traverse();
+   var max = {node:"",num:0};
+   for(var key in res)
+   {
+       if(res[key] > max.num){
+           max.node = key;
+           max.num = res[key];
+       }
+   }
+   console.log(max)
+</script>
+</html>

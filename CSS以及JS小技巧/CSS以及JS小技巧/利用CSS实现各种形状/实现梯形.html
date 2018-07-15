@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>梯形</title>
+    <style>
+        /*利用border实现各种图形主要利用了border的无缝拼接，而非矩形拼接，相邻边直接进行平分区域*/
+        #content{
+            width: 100px;
+            height: 100px;
+            background: #FFC;
+            border-top: 80px solid #0F0;
+            border-right: 80px solid #09C;
+            border-bottom: 80px solid #9F9;
+            border-left: 80px solid #FC3;
+        }
+        /*由上面的图形知将其他的三个border设置为transparent即可以实现梯形的效果*/
+    </style>
+</head>
+<body>
+  <div id="content"></div>
+</body>
+</html>

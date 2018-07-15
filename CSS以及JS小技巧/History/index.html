@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #canvas{
+            position: absolute;
+            left:0px;
+            top:0px;
+            width:100%;
+            height:100%;
+            margin:0px;
+            display: block;
+        }
+        #img{
+            display:none;
+        }
+    </style>
+
+</head>
+<body>
+  <canvas id="canvas" width="400" height="400"></canvas>
+  <img id="img" src="brush.png">
+<script type="text/javascript">
+    var image = document.getElementById("img");
+    var canvas = document.getElementById("canvas");
+    var context = canvas.getContext("2d");
+    var isDrawing = false;
+    var state = context.getImageData(0,0,canvas.width,canvas.height);
+    history.pushState(state,null);
+    canvas.addEventListener("pointerdown",function (e) {
+        e.preventManipulation();
+    },false);
+    canvas.addEventListener("mousedown",startDrawing,false);
+    canvas.addEventListener("mousemove",draw,false);
+    canvas.addEventListener("mouseup",stopDrawing,false);
+    window.addEventListener("popstate",loadState,false);
+    function startDrawing() {
+        isDrawing = true;
+    }
+    function draw(e){
+        if(isDrawing){
+            var sx = canvas.width / canvas.offsetWidth;
+            var sy = canvas.height / canvas.offsetHeight;
+            var x = sx * event.clientX ;
+            var y = sy * event.clientY ;
+            context.drawImage(image,x,y);
+
+        }
+    }
+    function stopDrawing(){
+        isDrawing = false;
+        var  state = context.getImageData(0,0,canvas.width,canvas.height);
+        /*当绘制结束之后将当前的绘制的图像存入state中，当点击了浏览器的back按钮时触发事件popstate，需要借助之前的状态信息恢复网页的状态，浏览器的url会自动更新*/
+        history.pushState(state,null);
+    }
+ function loadState(e){
+        context.clearRect(0,0,canvas.width,canvas.height);/*先将画布清除*/
+        if(e.state){
+            context.putImageData(e.state,0,0);
+        }
+ }
+</script>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>flex三栏式布局</title>
+    <style type="text/css">
+        .container{
+            display:flex;
+        }
+        .center{
+            flex: 1 1 300px;
+            order:2;
+            background:blue;
+        }
+        .left{
+            width:220px;
+            background:green;
+            order:1;
+        }
+        .right{
+            width:220px;
+            background: #f00;
+            order:3;
+        }
+    </style>
+</head>
+<body>
+ <div class="container">
+     <div class="center">
+         <h4>middle</h4>
+         <p>HHHHHHHHHHHHHHHHHHHHHH
+             hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh
+             HHHHHHHHHHHHHHHHHHHHHH
+             hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh
+         </p>
+     </div>
+     <div class="left">
+         <h4>left</h4>
+         <p>oooooooooooooo
+             0000000000000000
+             00000000000000000
+             ooooooooooooooo
+             ooooooooooooooo
+             000000000000000</p>
+     </div>
+     <div class="right">
+         <h4>right</h4>
+         <p>BBBBBBBBBBBBBB
+             888888888888888888
+             BBBBBBBBBBBBBBBBBB
+             88888888888888888888</p>
+     </div>
+ </div>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>canvas</title>
+</head>
+<body>
+<canvas width="600" height="600" id="canvas"></canvas>
+<script type="text/javascript">
+    var canvas = document.getElementById("canvas");
+    var context = canvas.getContext("2d");
+    context.fillStyle = "#eeeeff";
+    context.beginPath();
+    context.lineWidth = 5;
+    context.setLineDash([15]);/*如果数组中的元素的个数为奇数时，则会将数组元进行复制使得元素的个数为偶数个，
+    奇数的位置表示的线的宽度，偶数的位置表示的是间隔*/
+    context.moveTo(20,20);
+    context.lineTo(200,20);
+    context.stroke();
+</script>
+</body>
+</html>

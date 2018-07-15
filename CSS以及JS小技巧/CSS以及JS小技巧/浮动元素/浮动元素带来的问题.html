@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        .container{
+            width:500px;
+            border: 2px solid red;
+            /*BFC解决父级元素的塌陷问题的四种方式，当然也可以通过给复原素添加高度实现*/
+            /*   position: absolute;*//*，absolute/fixed均可以*/
+            /* overflow: auto;*/ /*overflow的值除visible以外均解决问题*/
+            /*     float:left;*/
+         /*   display:inline-block*/
+            display:table-caption;
+        }
+        .left{
+            width:100px;
+            height:50px;
+            background: blue;
+            float:left;
+        }
+        .center{
+            width:200px;
+            height:100px;
+            background:green;
+            float:left;
+            /*元素只能在原位置的基础上进行左右浮动，
+            同时不占据原有的文档位置，所以该元素下面的元素如果没有使用浮动，
+            则会向上移动到紧挨着上一个非浮动元素的下面，所以浮动元素可能会覆盖住其他元素*/
+        }
+        .right{
+            width:300px;
+            background:orange;
+            height:150px;
+            float:left;
+            /*清除浮动的方式之一，在元素的后面添加一个空元素添加clear:both，该方法也可以利用伪元素实现*/
+         /*   clear:left;*//*清除当前元素的左边的浮动元素，clear：right同理，clear：both清除当前元素的左右的所有浮动元素*/
+        }
+
+    </style>
+</head>
+<body>
+ <div class="container">
+     <div class="left"></div>
+     <div class="center"></div>
+     <div class="right"></div>
+ </div>
+</body>
+</html>

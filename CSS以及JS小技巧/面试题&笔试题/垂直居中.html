@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>居中</title>
+    <style type="text/css">
+        /*方式一*/
+        /*.container{*/
+            /*width:100px;*/
+            /*height:100px;*/
+            /*background: red;*/
+            /*text-align: center;*/
+            /*vertical-align: middle;*/
+            /*display: table-cell;*/
+        /*}*/
+        /*.content{*/
+            /*width:50px;*/
+            /*height:50px;*/
+            /*background: green;*/
+            /*display: inline-block;*/
+        /*}*/
+
+   /*方式二*/
+        /*.container{*/
+            /*width:100px;*/
+            /*height:100px;*/
+            /*background: red;*/
+            /*display: flex;*/
+            /*justify-content: center;*/
+
+        /*}*/
+        /*.content{*/
+            /*width:50px;*/
+            /*height:50px;*/
+            /*background: green;*/
+            /*align-self: center;*/
+        /*}*/
+
+
+        /*方式三*/
+        /*.container{*/
+            /*width:100px;*/
+            /*height:100px;*/
+            /*background: red;*/
+            /*display: flex;*/
+            /*justify-content: center;*/
+            /*align-items: center;*/
+        /*}*/
+        /*.content{*/
+            /*width:50px;*/
+            /*height:50px;*/
+            /*background: green;*/
+        /*}*/
+
+        /*方式四*/
+        /*.container{*/
+            /*width:100px;*/
+            /*height:100px;*/
+            /*background: red;*/
+            /*position: relative;*/
+        /*}*/
+        /*.content{*/
+            /*width:50px;*/
+            /*height:50px;*/
+            /*background: green;*/
+            /*position: absolute;*/
+            /*left:50%;*/
+            /*top:50%;*/
+            /*!*margin-left: -25px;*/
+            /*margin-top: -25px;*!*/
+            /*transform:translate(-50%,-50%)*/
+        /*}*/
+        /*方式六*/
+        .container{
+            width:100px;
+            height:100px;
+            background: red;
+            text-align: center;
+        }
+        .container:before{
+            content: '';
+            display: inline-block;
+            vertical-align: middle;
+            height:100%;
+            width:100%;
+        }
+        .content{
+            width:50px;
+            height:50px;
+            background: green;
+           display: inline-block;
+            vertical-align: middle;
+            margin-top:-125px;
+        }
+    </style>
+</head>
+<body>
+  <div class="container">
+      <div class="content"></div>
+  </div>
+</body>
+</html>

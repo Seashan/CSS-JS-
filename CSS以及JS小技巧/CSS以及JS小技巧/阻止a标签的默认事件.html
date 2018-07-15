@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+ <a href="#">hello</a>
+ <input type="text"  id="jump">
+<script type="text/javascript">
+    /*只有onclick中才可以阻止a标签的默认事件,跳转属于click的默认事件,注意事件的执行顺序*/
+
+    /*点击input标签的时一次触发的事件： mousedown,focus,mouseup,click*/
+    var a = document.getElementById("jump");
+
+     a.onmousedown = function(e){
+         console.log("11111")
+       //  e.preventDefault();
+     }
+   a.onmouseup=function (e) {
+       console.log("2222")
+     //  e.preventDefault();
+   }
+    a.onclick=function (e) {
+        console.log("33333")
+      //  e.preventDefault();
+    }
+    a.onfocus = function (e) {
+        console.log("4444")
+    }
+</script>
+</body>
+</html>

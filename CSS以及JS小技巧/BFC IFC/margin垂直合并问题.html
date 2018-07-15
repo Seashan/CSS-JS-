@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+   /*margin不会进行水平合并*/
+
+        .div{
+            /*overflow: hidden;*//*利用该属性或者通过给父级元素设置border可以避免出现父级元素的margin合并的情况，当没有设置这两个属性之一时，该div的margin-top值会取div1的margin-top和其自身margin-top的最大值*/
+           /*下面的两种方式相当于使margin不直接相邻，既不会发生margin合并的现象*/
+            /* border:1px solid red;*/
+            /*另外的一种方式是利用匿名的空格,如下面使用的&nbsp*/
+            margin:0 auto;
+            margin-top:10px;
+            width:250px;
+            height:800px;
+            background: pink;
+
+        }
+        /*margin在折叠的分几种情况，第一种是margin-bottom，和div2的margin-top的值均为负值是，
+        则取绝对值最大的，当都为正值时取最大的。有正有负时去两者的相加之后的结果*/
+        .div1{
+            width:200px;
+            height:200px;
+            background: red;
+            margin-bottom:10px;
+        }
+        /*通过使div2元素形成一个BFC即可去除margin的问题*/
+        .div2{
+            width:200px;
+            background: green;
+            margin-top: 10px;
+            height:200px;
+            /*形成BFC的方法见浮动元素中的详解*/
+            /*float:left;*//*方法之一如果使用的是浮动消除div1和div2之间的margin塌陷，
+                            div3和div1属于正常的文档流，则他们两之间的margin会发生塌陷*/
+            /*position:absolute;*/
+        }
+        .div3{
+            width:200px;
+            background:lightskyblue;
+            margin-top: 10px;
+            height:200px;
+        }
+     /*对于元素的height为0 其中的内容个为空时，如果padding-top/bottom以及border-top/bottom均0的话（相当于使margin相邻），
+     则其自身margin-top/bottom会发生合并*/
+
+        .minHeight{
+            height:0;
+            min-height: 0;
+            margin-top:10px;
+            margin-bottom:20px;
+         /*   padding-top:10px;*/
+        }
+    </style>
+</head>
+<body>
+<div class="div">&nbsp;
+    <div class="div1"></div>
+    <div class="div2"></div>
+    <div class="div3"></div>
+</div>
+<div class="minHeight"></div>
+</body>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>顶部进度条</title>
+    <style type="text/css">
+        body{
+            margin:0;
+            width:100%
+        }
+        #progress {
+            position:fixed;
+            height: 2px;
+            background:#2085c5;
+            transition: width 1000ms ;
+            animation: progress 2s ease-in 0.2s;
+        }
+
+        @-webkit-keyframes progress {
+            0%{
+                width: 0;
+            }
+            10%{
+                width:10%;
+            }
+            20%{
+                width:20%;
+            }
+            30%{
+                width:30%;
+            }
+            40%{
+                width:40%;
+            }
+            50%{
+                width:50%;
+            }
+            60%{
+                width:60%;
+            }
+            70%{
+                width:70%;
+            }
+            80%{
+                width:80%;
+            }
+            90% {
+                width: 90%;
+            }
+            100%{
+                width:100%;
+            }
+        }
+       /*span主要是为了实现特效，也可以不需要*/
+        #progress span {
+            position:absolute;
+            height:2px;
+            -webkit-box-shadow:#2085c5 1px 0 6px 1px;
+            -webkit-border-radius:100%;
+            opacity:1;
+            width:150px;
+            right:-10px;
+            -webkit-animation:pulse 2s ease-out 0s infinite;
+        }
+
+        @-webkit-keyframes pulse {
+            30% {
+                opacity:.6
+            }
+            60% {
+                opacity:0;
+            }
+            100% {
+                opacity:.6
+            }
+        }
+    </style>
+</head>
+<body>
+<div id="progress">
+     <span></span>
+</div>
+</body>
+</html>

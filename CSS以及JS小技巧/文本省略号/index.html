@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        p{
+            width:100px;
+            height:100px;
+            overflow: hidden;/*此处可以为scroll,auto,hidden+下面的两个属性均可以实现文字不完全显示时的省略号的效果*/
+            white-space: nowrap;
+            -ms-text-overflow: ellipsis;
+            text-overflow: ellipsis;/*该属性的clip值表示的是直接将超出的部分去掉*/
+        }
+    </style>
+</head>
+<body>
+ <p>很长很长的文字，很长很长的文字很长，很长的文字，很长很长的文字，很长很长的文字，很长很长的文字，很长很长的文字，很长很长的文字，</p>
+</body>
+</html>

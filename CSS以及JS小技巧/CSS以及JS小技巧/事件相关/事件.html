@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+  <div>
+      <ul id="ulList">
+          <li class="detail"><a> hello</a></li>
+          <li><a> hi</a></li>
+      </ul>
+  </div>
+  <script src="jquery.1.11.1.min.js"></script>
+<script type="text/javascript">
+    $('#ulList').on('mouseenter','li',function (e) {
+        console.log("enter:",e.target);
+    })
+
+  /*只能通过原生的将mouseleave绑定在指定元素上而其子元素不会触发该事件,原生的mouseleave和mouseenter不会有时间冒泡等，只将事件绑定在指定的元素上，mouseover，mouseout即使是原生的，通过其子元素时也会触发相应的事件*/
+ /* for(var i=0;i<$('li').length;i++)
+  {
+      $('li').get(i).onmouseleave=function (e) {
+          console.log("out:",e.target)
+      }
+  }*/
+/*  $('li').mouseleave(function (e) {
+      console.log("out:",e.target)
+  })*/
+
+  $('ul>li').mouseleave(function (e) {
+      e.stopPropagation();
+      console.log("out:",e.target)
+      //e.stopPropagation();
+  })
+</script>
+</body>
+</html>

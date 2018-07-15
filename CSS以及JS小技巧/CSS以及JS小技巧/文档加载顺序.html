@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        function show(){
+            alert('show');
+        }
+        alert('scirpt');
+    </script>
+</head>
+<body onload="alert('body')">
+  <script>
+       alert('in-script');
+  </script>
+</body>
+</html>
+<script>
+    show();
+</script>
+<!--onload中是当所有的静态资源以及dom树加载完毕后再执行的和window.onload是类似的，
+$(document).ready()和$(function(){})都属于jQuery，在dom树加载完毕时就会执行这样不会因为静态资源的加载而导致页面的阻塞，
+而且前者只能注册一个事件处理函数，而后者则可以注册多个且都可以被执行-->

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        /*非替换行内元素的高度与font-size的大小有关*/
+        span,a{
+            font-size:16px;
+        }
+        .broken{
+            border: solid 1px red;
+            background: yellow;
+        }
+    </style>
+</head>
+<body>
+  <span>hello</span>
+   <a hre="#">a标签的行高</a>
+   <input value="input 替换元素">
+
+  <div class="broken">一段文字一段文字一段文字一段文字一段文字一段文字一段文字一段文字一段文字一段文字一段文字一段文字一段文字一段文字一段文字一段文字一段文字一段文字一段文字一段文字一段文字一段文字一段文字一段文字</div>
+  <!--当inline-level box宽度大于父容器宽度时会被拆分成多个inline-level box，-->
+  <span class="broken">一段文字一段文字一段文字一段文字一段文字一段文字一段文字一段文字一段文字一段文字一段文字一段文字一段文字一段文字一段文字一段文字一段文字一段文字一段文字一段文字一段文字一段文字一段文字一段文字</span>
+
+
+
+</body>
+</html>

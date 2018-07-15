@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        /* 标题可以结合counter添加任意的文字信息*/
+    /*    h1:before{
+            content:"第"counter(my)"章、";!*利用counter可以添加计数器*!
+        }
+        h1{
+            counter-increment: my;!*counter-increment的值要和计数器的名字相同*!
+        }*/
+        h1:before{
+            content:counter(supCounter)'.';
+        }
+        h1{
+            counter-increment:supCounter;
+            counter-reset:subCounter;/*子标题序号进行重置*/
+        }
+
+        h2:before{
+            content:counter(subCounter)'.';
+        }
+        h2{
+            counter-increment:subCounter;
+        }
+    </style>
+</head>
+<body>
+   <h1>一级标题</h1>
+   <h2>二级标题</h2>
+   <h2>二级标题</h2>
+   <h2>二级标题</h2>
+   <h1>一级标题</h1>
+   <h2>二级标题</h2>
+   <h2>二级标题</h2>
+   <h2>二级标题</h2>
+   <h1>一级标题</h1>
+   <h2>二级标题</h2>
+   <h2>二级标题</h2>
+   <h2>二级标题</h2>
+</body>
+</html>

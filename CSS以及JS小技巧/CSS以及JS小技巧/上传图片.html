@@ -1,0 +1,402 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <style type="text/css">
+        body, ol, ul, h1, h2, h3, h4, h5, h6, p, th, td, dl, dd, form, fieldset, legend, input, textarea, select { margin: 0; padding: 0; }
+        body { background: none repeat scroll 0 0  #D1D1D1; font: 14px "宋体","Arial Narrow",HELVETICA; }
+        h1, h2, h3, h4, h5, h6 { font-weight: bold; font-size: 14px; }
+        .over_h{ overflow: hidden;}
+        .clear { clear: both;}
+
+        .image_list { width: 250px; position: fixed; top: 0; bottom: 0; right: 0;  overflow-x: hidden; overflow-y: scroll; }
+        .up_image { margin-right: 260px; height: 200px;}
+        .img_tailor {  min-height: 200px; margin: 10px 260px 0 0;}
+
+        .box { border: 1px solid #E0E0E0; background: white; }
+        .box .title { background: #336699; padding: 10px; color: White;  }
+
+        .up_img { border: 1px dashed #DDDDDD; width: 140px; height: 140px;  margin: 10px; float: left; cursor: pointer; text-align: center; }
+        .up_img img{ vertical-align: middle; }
+        .up_img a { position: relative; overflow: hidden; display: inline-block; color: #005197; margin-top: 15px; }
+        .up_img input { position: absolute; right: 0; top: 0; height: 100px; opacity: 0; filter: alpha(opacity=0); cursor:pointer;}
+
+
+        .pre_img {  margin: 10px 10px 10px 170px; border: 1px dashed #DDDDDD; height: 140px; overflow-x: hidden; overflow-y: scroll; }
+        .dragAreaOver{ border-color: Red; }
+
+        .image_upload{ margin: 5px; border: 1px solid #E0E0E0; text-align: center; padding: 5px; display: inline-block; position: relative; }
+        .image_upload img{ max-height: 115px; max-width: 115px; }
+        .image_upload .rate { position: absolute; top: 6px; left: 6px; padding: 0 5px; color: White; background: black; border-radius: 5px;  filter:alpha(opacity=70); -moz-opacity:0.7; -khtml-opacity: 0.7; opacity: 0.7; }
+        .image_upload .delete { background: url("images/del.png") no-repeat scroll 0 0 transparent; cursor: pointer; height: 16px; position: absolute; right: -6px; top: -6px; width: 16px;}
+
+        .img_list { margin: 10px; }
+        .img_list li { text-align: center; list-style: none;}
+        .img_list li:hover { background-color: #E8F2FD; }
+        .img_list li img{ max-height: 160px; max-width: 160px; padding: 5px;  border: 1px solid #E0E0E0; cursor: pointer; }
+
+        .img_container{ margin: 10px auto; border: 1px solid #E0E0E0; overflow: hidden; width: 300px; display: none; }
+        .img { float: left; position: relative;}
+
+        .tailor_border {  width: 120px; height: 120px; position: absolute; background: black; filter:alpha(opacity=40); -moz-opacity:0.4; -khtml-opacity: 0.4; opacity: 0.4;}
+
+        .pre_container { position:absolute;  top: 260px; right:270px; border: 1px solid #E0E0E0; width: 200px; height: 350px; text-align: center; display: none; }
+        .pre_container h3 { padding: 5px; border-bottom: 1px solid #E0E0E0;}
+        .pre_view { border: 1px solid #E0E0E0; width: 120px; height: 120px; margin: 10px auto; padding: 5px; overflow: hidden; position: relative; }
+        .save_view { margin: 10px auto;  }
+        .save_view img{ border: 1px solid #E0E0E0; padding: 5px;  }
+        .pre_view_img { position: absolute; }
+
+    </style>
+</head>
+<body>
+<div class="box up_image">
+    <h3 class="title">
+        上传图片</h3>
+    <div class="main over_h">
+        <div class="up_img" id="up_img" title="上传图片">
+            <iframe id="if_upload" name="if_upload" style="display: none;" ></iframe>
+            <form id="uploadForm" target="if_upload" action="fileUpload.ashx?t=iframe" method="post" enctype="multipart/form-data">
+                <a class="fl"><img src="images/upload.jpg" alt=""/><input id="files" type="file" size="4" name="file[]" multiple /></a>
+
+            </form>
+        </div>
+        <div class="pre_img" id="pre_img">
+        </div>
+    </div>
+</div>
+<div class="box image_list">
+    <h3 class="title">
+        图片列表</h3>
+    <div class="main">
+        <ul id="img_list" class="img_list">
+        </ul>
+    </div>
+</div>
+<div class="box img_tailor">
+    <h3 class="title">
+        图片剪切</h3>
+    <div class="main">
+        <div class="img_container" id="img_container">
+            <div id="img" class="img">
+                <div class="tailor_border" id="tailor_border">
+                </div>
+                <img alt="" id="tailor_pic">
+            </div>
+        </div>
+        <div class="pre_container" id="pre_container">
+            <h3>预览</h3>
+            <div id="pre_view" class="pre_view">
+                <div id="pre_view_img" class="pre_view_img">
+                    <img alt="" id="pre_pic">
+                </div>
+            </div>
+            <button type="button" id="save">
+                保存</button>
+            <div id="save_view" class="save_view">
+            </div>
+        </div>
+
+    </div>
+
+    <script src="js/jquery-1.7.1.js" type="text/javascript"></script>
+    <script type="text/javascript">
+
+        //处理低版本浏览器上传问题
+        function iframe_ipload(src) {
+            var j_img_list = $('#img_list'),
+                j_pre_img = $('#pre_img');
+
+            var up = $('<div class="image_upload" ></div>');
+            var img = $('<img src="' + src + '" alt="" >');
+            var rate = $('<div class="rate">100%</div>');
+            up.append(img);
+            up.append(rate);
+            j_pre_img.append(up);
+
+            var li = $('<li></li>');
+            var _i = $('<img title="裁剪图片" src="' + src + '" alt="">');
+            showImg(_i);
+            li.append(_i);
+            j_img_list.append(li);
+
+            // upload(files[k], k);
+
+        }
+        function showImg(el) {
+            var j_img_container = $('#img_container'),
+                j_pre_container = $('#pre_container'),
+                j_tailor_pic = $('#tailor_pic'),
+                j_img = $('#img'),
+                j_pre_pic = $('#pre_pic');
+
+            el.click(function () {
+                j_pre_container.show();
+                j_img_container.show();
+                j_pre_pic.attr('src', el.attr('src'));
+                j_tailor_pic.attr('src', el.attr('src'));
+                initWidthByImg(j_img, j_img_container);
+            });
+        }
+        //通用方法
+        function initWidthByImg(img, img_container) {
+            setTimeout(function () {
+                img_container.css('width', img.width());
+            }, 50)
+
+        }
+
+        $(document).ready(function () {
+            var j_up_img = $('#up_img'),
+                j_pre_img = $('#pre_img'),
+                j_img_list = $('#img_list'),
+                j_tailor = $('#tailor_border'),
+                j_img_container = $('#img_container'),
+                j_img = $('#img'),
+                j_pre_view_img = $('#pre_view_img'),
+                j_save = $('#save'),
+                j_save_view = $('#save_view'),
+                j_pre_container = $('#pre_container'),
+                j_tailor_pic = $('#tailor_pic'),
+                j_pre_pic = $('#pre_pic'),
+                j_uploadForm = $('#uploadForm');
+
+            j_file = $('#files');
+
+            //需要上传的文件
+            var files = null;
+
+            //判断是否支持高级特性，经测试若是不支持filereader与file
+            var is_support = true;
+            if (typeof FileReader === 'undefined') is_support = false;
+
+            //当点击图片时，触发上传事件
+            j_file.change(function () {
+                initDom();
+                if (is_support) {
+                    var file = j_file.get(0);
+                    if (!file.files[0]) is_support = false;
+                    //支持高级功能的浏览器
+                    files = file.files;
+                    if (files) {
+                        preView(files);
+                    }
+                } else {
+                    //不支持的话采用传统方式，渐进增强，支持IE7,8
+                    j_uploadForm.submit();
+                }
+            });
+
+            if (is_support) {
+                //拖放上传图片
+                var dragArea = j_up_img.get(0);
+                /************拖放相关************/
+                j_up_img.bind('dragover', function (e) {
+                    $(this).addClass('dragAreaOver');
+                    e.stopPropagation();
+                    e.preventDefault();
+                });
+                j_up_img.bind('dragleave', function (e) {
+
+                    $(this).removeClass('dragAreaOver');
+                    e.stopPropagation();
+                    e.preventDefault();
+                });
+                dragArea.addEventListener("drop", function (e) {
+                    files = e.target.files || e.dataTransfer.files;
+                    initDom();
+                    preView(files);
+                    e.stopPropagation();
+                    e.preventDefault();
+
+                }, false);
+            }
+            /************剪切相关************/
+            //开始剪切时，初始化宽度
+
+
+            dragFunc(j_tailor, j_tailor, j_img_container, function (e) {
+                j_pre_view_img.css('left', '-' + j_tailor.css('left'));
+                j_pre_view_img.css('top', '-' + j_tailor.css('top'));
+
+            });
+
+            j_save.click(function () {
+                var offset = j_tailor.offset(),
+                    o = j_img.offset();
+                var pic_src = j_pre_pic.attr('src');
+                pic_src = 'temp' + pic_src.substr(pic_src.lastIndexOf('/'));
+
+                $.get('scissors.axd', {
+                    action: 'GenerateBitmap',
+                    src: pic_src,
+                    zoom: 1,
+                    x: (offset.left - o.left) * (-1),
+                    y: (offset.top - o.top) * (-1),
+                    //                    x: -50,
+                    //y: -50,
+                    width: j_tailor.width(),
+                    height: j_tailor.height(),
+                    t: Math.random()
+                }, function (data) {
+                    if (data && typeof data == 'string') {
+                        data = eval('(' + data + ')');
+                    }
+                    var src = data.src;
+                    j_save_view.html('<img src="' + src + '" alt="" />');
+                });
+
+            });
+
+
+
+            function initDom() {
+                j_pre_img.html('');
+                //j_img_list.html('');
+            }
+
+            function preView(files) {
+                for (var k = 0, len = files.length; k < len; k++) {
+                    var file = files[k];
+                    var reader = new FileReader();
+                    reader.readAsDataURL(file);
+                    (function (k) {
+                        reader.onloadend = function (e) {
+                            if (reader.error) {
+                                alert(reader.error);
+                            } else {
+                                var up = $('<div class="image_upload" id="up_' + k + '"></div>');
+                                var img = $('<img src="' + this.result + '" alt="" id="img_' + k + '">');
+                                var rate = $('<div class="rate" id="rate_' + k + '">0%</div>');
+                                up.append(img);
+                                up.append(rate);
+                                j_pre_img.append(up);
+                                upload(files[k], k);
+
+                            }
+                        };
+                    })(k);
+                } //for
+            }
+
+            function upload(file, k) {
+                var up = $('#up_' + k);
+                var img = $('#img_' + k);
+                var rate = $('#rate_' + k);
+                var del = $('#del_' + k);
+                var fd = new FormData();
+                fd.append('upload', file);
+                var xhr = new XMLHttpRequest();
+                xhr.upload.addEventListener('progress', function (e) {
+                    var percentComplete = Math.round((e.loaded) * 100 / e.total);
+                    rate.html(percentComplete.toString() + '%');
+                }, false);
+                // 文件上传成功或是失败
+                xhr.onreadystatechange = function (e) {
+                    if (xhr.readyState == 4) {
+                        if (xhr.status == 200) {
+                            rate.html('100%');
+                            var url = xhr.responseText;
+                            var li = $('<li></li>');
+                            var _i = $('<img title="裁剪图片" src="' + url + '" alt="">');
+                            showImg(_i);
+                            li.append(_i);
+                            j_img_list.append(li);
+
+                        }
+                    }
+                };
+                xhr.open("POST", "fileUpload.ashx");
+                //发送
+                xhr.send(fd);
+            }
+
+            function dragFunc(dragDiv, dragBody, parent, func_up) {
+                if (dragDiv[0] && dragBody[0]) {
+                    var dragAble = false;
+                    var x1 = 0;
+                    var y1 = 0;
+                    var l = 0;
+                    var t = 0;
+                    var p_t = 0;
+                    var p_l = 0;
+                    var init_position = '';
+
+                    var divOffset = dragBody.offset();
+                    dragDiv.mousedown(function (e) {
+                        var ss = this;
+                        //                    var rootId =
+                        init_position = dragBody.css("position");
+                        dragBody.css("position", "absolute");
+                        dragDiv.css("cursor", "move");
+                        dragAble = true;
+                        // 当前鼠标距离div边框的距离
+                        // 当前鼠标坐标，减去div相对左边的像素
+                        l = parseInt(dragBody.css("left")) ? parseInt(dragBody.css("left")) : 0;
+                        t = parseInt(dragBody.css("top")) ? parseInt(dragBody.css("top")) : 0;
+
+                        if (parent && parent[0]) {
+                            p_l = parent.offset().left;
+                            p_t = parent.offset().top;
+                        }
+
+                        x1 = e.clientX - l - p_l;
+                        y1 = e.clientY - t - p_t;
+                        x1 = x1 > 0 ? x1 : 0;
+                        y1 = y1 > 0 ? y1 : 0;
+                        this.setCapture && this.setCapture();
+                    });
+                    dragDiv.mousemove(function (e) {
+                        if (!dragAble)
+                            return;
+                        // 当前div左边的坐标
+                        // 当前鼠标坐标，减去鼠标拖动量
+                        var x2 = 0;
+                        var y2 = 0;
+                        //需要考虑滚动条问题！！！
+                        var top = $(document).scrollTop() ? $(document).scrollTop() - 40 : 0;
+                        var left = $(document).scrollLeft() ? $(document).scrollLeft() - 40 : 0;
+                        x2 = e.clientX - x1 + left - p_l;
+                        y2 = e.clientY - y1 + top - p_t;
+                        x2 = x2 > 0 ? x2 : 0;
+                        y2 = y2 > 0 ? y2 : 0;
+
+                        //当鼠标值较大时需要处理
+                        if (e.clientX > 600) {
+                            $('#pre_container').css('left', '10px');
+                            $('#pre_container').css('right', '');
+                        } else {
+                            $('#pre_container').css('left', '');
+                            $('#pre_container').css('right', '270px');
+                        }
+
+                        if (Math.abs(l - x2) > 10 || Math.abs(t - y2) > 10) {
+                            dragBody.css("left", x2 + "px");
+                            dragBody.css("top", y2 + "px");
+                        }
+                        if (func_up && typeof func_up == 'function') {
+                            func_up(e);
+                        }
+                    });
+                    dragDiv.mouseup(function (event) {
+                        if (!dragAble)
+                            return;
+                        dragAble = false;
+                        dragBody.css("position", init_position);
+                        if (dragBody.css("position") == 'fixed') {
+                            var t = parseInt(dragBody.css('top'));
+                            var st = $(document).scrollTop() ? $(document).scrollTop() : 0;
+                            dragBody.css('top', (t - st) + 'px');
+                        }
+                        // dragDiv.css("position", "relative");
+                        this.releaseCapture && this.releaseCapture();
+
+                    });
+                }
+            }
+        });
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        .container {
+            width: 500px;
+            min-height: 280px;
+            border: 1px solid #aaa;
+            padding: 10px;
+        }
+
+        .floated {
+            float: left;
+            margin: 5px;
+        }
+
+        p {
+            margin: 0;
+            text-align: left;
+            background-color: green;
+            color: white;
+            padding: 10px;
+        }
+
+        .bfc {
+            overflow: hidden;
+        }
+
+        /* general styling */
+
+        body {
+            text-align: center;
+        }
+
+        button {
+            margin-top: 30px;
+        }
+
+        .container {
+            margin: 10px auto;
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        .p {
+            background: none;
+            padding-top: 100px;
+            font-size: 13px;
+            text-align: center;
+            color: black;
+        }
+    </style>
+</head>
+<body>
+<h2>Preventing Text Wrapping around a Float Using a Block Formatting Context</h2>
+
+<div class="container">
+    <div class="floated">
+        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/123941/man-jumping.jpg" alt="man jumping">
+    </div>
+    <p class="bfc">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae hic ut ab perferendis sit quod architecto, dolor debitis quam rem provident aspernatur tempora expedita perspiciatis suscipit ipsam voluptas tenetur. Nostrum? Quae hic ut ab perferendis sit quod architecto. Quae hic ut ab perferendis sit quod architecto.</p>
+</div>
+
+<button>TOGGLE BLOCK FORMATTING CONTEXT</button>
+
+<p class="p">Demo by Ritesh Kumar. <a href="http://www.sitepoint.com/understanding-block-formatting-contexts-in-css" target="_blank">See article</a>.</p>
+<script type="text/javascript">
+    var btn = document.querySelector('button'),
+        p = document.querySelector('p');
+    btn.addEventListener('click', function () {
+        p.classList.toggle('bfc');
+    }, false);
+</script>
+
+</body>
+</html>

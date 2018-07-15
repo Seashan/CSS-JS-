@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div style="width:400px;height:200px;">
+    <!--span元素属于内联元素是不能进行设置宽高的，由于利用了浮动属性，使其成为BFC，所以高度进行了计算而得，
+    但是由于i元素不仅浮动而且还定位，所以使得其不能将span进行撑大-->
+  <span style="float:left;width:auto;height:100%;">
+      <i style="position:absolute;float:left;width:100px;height:50px;">hello</i>
+  </span>
+</div>
+</body>
+</html>

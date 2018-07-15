@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body onload="init()">
+<div id = dragme draggable="true" style="width:200px;border:1px solid gray">请拖放</div>
+<div id="text" style="width:200px;height:200px;border:1px solid gray"></div>
+<script>
+    function init(){
+        var source = document.getElementById("dragme");
+        var dest = document.getElementById("text");
+        source.addEventListener("dragstart",function (ev) {
+           var dt = ev.dataTransfer;
+           dt.effectAllowed = "all";
+           dt.setData("text/plain","你好\n");
+        })
+        dest.addEventListener("dragenter",function(ev){
+            ev.preventDefault();
+        })
+        dest.addEventListener("dragover",function(ev){
+            ev.preventDefault();
+        })
+        dest.addEventListener("dragend",function(ev){
+            ev.preventDefault();
+        });
+        dest.addEventListener("drop",function(ev){
+            ev.preventDefault();
+            var dt = ev.dataTransfer;
+            dt.dropEffect = "all";
+            var text = dt.getData("text/plain");
+            dest.textContent += text;
+            ev.stopPropagation();
+        })
+    }
+</script>
+</body>
+</html>

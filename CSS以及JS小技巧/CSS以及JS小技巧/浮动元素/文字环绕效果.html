@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        div{
+            width:500px;
+            word-break: break-all;/*将单词的每个字母划分为独立的单位在需要换行的时候进行换操作*/
+            /*word-warp: break-word*/;/*允许长单词换行到下一行,当一个单词长度超过div的宽度时，默认是不会换行的,如果使用该属性则下面的第二个不会出现效果，因为会将下面的看做一个整体而不进行换行*/
+        }
+/*  p{
+      overflow :hidden;
+  }*/ /*文字图像的环绕效果利用BFC可以解除*/
+    </style>
+</head>
+<body>
+<div><img src="img1.JPG"  style="float:left">
+    <p>-- 是否对单词进行断词处理。--个人理解就是： 它会把一个单词的每个字母拆分成独立的单元，这样就可以把它填充到每个地方，所以才能达到文字环绕图片的效果。
+    以上就是CSS实现文字环绕图片时遇到的问题及解决方法，希望对大家的学习有所帮助是否对单词进行断词处理。--个人理解就是： 它会把一个单词的每个字母拆分成独立的单元，这样就可以把它填充到每个地方，所以才能达到文字环绕图片的效果。
+    以上就是CSS实现文字环绕图片时遇到的问题及解决方法，希望对大家的学习有所帮助
+    </p>
+</div>
+<div><img src="img1.JPG" style="float:left">-thisiscerefajkfjkjakgjksjafjkgdAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+    AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</div>
+</body>
+</html>

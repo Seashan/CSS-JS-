@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>各种圆形</title>
+    <style>
+        /*利用border-radius以及border-width可以实现各种效果*/
+        div{
+            display:inline-block;
+            margin-left:20px;
+        }
+        .circle{
+            width:100px;
+            height:100px;
+            border-radius:50%;
+            background: #669;
+        }
+        .circle-circle{
+            width: 100px;
+            height: 100px;
+            border:20px solid #669;
+            background: #fff;
+            border-radius: 50%;
+        }
+        .circle-up{
+            width: 200px;
+            height: 100px;
+            background: #669;
+            border-radius: 100px 100px 0 0;
+            /*或者利用border-top等替换height*/
+            /*border:0 solid transparent;*/
+            /*border-top:100px solid #669;*/
+            /*border-right:100px solid #669;*/
+        }
+        .circle-down{
+            width: 200px;
+            height: 100px;
+            background: #669;
+            border-radius:  0 0 100px 100px;
+        }
+        .circle-left{
+            width: 100px;
+            height: 200px;
+            background: #669;
+            border-radius:  100px 0 0 100px;
+        }
+        .circle-right{
+            width: 100px;
+            height: 200px;
+            background: #669;
+            border-radius:  0 100px  100px 0;
+        }
+        .circle-lefttop{
+            width: 100px;
+            height: 100px;
+            background: #669;
+            border-radius:   100px 0 0 0;
+        }
+        .circle-leftbottom{
+            width: 100px;
+            height: 100px;
+            background: #669;
+            border-radius:  0 0 0 100px ;
+        }
+        .circle-rightbottom{
+            width: 100px;
+            height: 100px;
+            background: #669;
+            border-radius:  0 0 100px  0 ;
+        }
+        .circle-righttop{
+            width: 100px;
+            height: 100px;
+            background: #669;
+            border-radius:  0 100px 0 0 ;
+        }
+
+        /*小尾巴样式*/
+        .tail-leftup{
+            width:100px;
+            height:100px;
+            border-top:30px solid #669;
+            border-radius:100px 0 0 0 ;
+        }
+        .tail-rightup{
+            width:100px;
+            height:100px;
+            border-top:30px solid #669;
+            border-radius:0 100px 0 0 ;
+        }
+        .tail-rightbottom{
+            width:100px;
+            height:100px;
+            border-bottom:30px solid #669;
+            border-radius:0  0 100px 0 ;
+        }
+        .tail-leftbottom{
+            width:100px;
+            height:100px;
+            border-bottom:30px solid #669;
+            border-radius:0  0 0 100px ;
+        }
+
+        /*提示信息框*/
+        .pop{
+            width:200px;
+            height:100px;
+            background: #669;
+            border-radius: 30px;
+            position: relative;
+        }
+        .pop:after{
+            position: absolute;
+            left:10px;
+            top:80px;
+            content:'';
+            width:45px;
+            height:45px;
+            border-radius:0 0 0 45px;
+            border-bottom:30px solid #669;
+            transform:rotate(-90deg)
+        }
+        
+        /*爱心*/
+        .heart{
+            height:200px;
+            width:160px;
+            position: relative;
+        }
+        .heart:before{
+            position:absolute;
+            left:20px;
+            content:'';
+            width:80px;
+            height:120px;
+            border-radius:120px 120px 0 0;
+            background: #669;
+            -webkit-transform: rotate(-45deg);
+            -moz-transform: rotate(-45deg);
+            -ms-transform: rotate(-45deg);
+            -o-transform: rotate(-45deg);
+            transform: rotate(-45deg);
+        }
+        .heart:after{
+            position:absolute;
+            left:48px;
+            content:'';
+            width:80px;
+            height:120px;
+            border-radius:120px 120px 0 0;
+            background: #669;
+            -webkit-transform: rotate(45deg);
+            -moz-transform: rotate(45deg);
+            -ms-transform: rotate(45deg);
+            -o-transform: rotate(45deg);
+            transform: rotate(45deg);
+        }
+    </style>
+</head>
+<body>
+  <div class="circle"></div>
+  <div class="circle-circle"></div>
+  <div class="circle-up"></div>
+  <div class="circle-down"></div>
+  <div class="circle-left"></div>
+  <div class="circle-right"></div>
+  <div class="circle-lefttop"></div>
+  <div class="circle-righttop "></div>
+  <div class="circle-rightbottom"></div>
+  <div class="circle-leftbottom"></div>
+
+<!--实现各种小尾巴-->
+ <div class="tail-leftup"></div>
+ <div class="tail-rightup"></div>
+ <div class="tail-leftbottom"></div>
+ <div class="tail-rightbottom"></div>
+
+<!--提示信息框-->
+<div class="pop"></div>
+
+<!--爱心-->
+<div class="heart"></div>
+</body>
+</html>

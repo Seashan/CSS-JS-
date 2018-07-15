@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>利用CSS3旋转绘制三角形</title>
+    <style type="text/css">
+        .triangle-css3 {
+            position:absolute;
+            bottom:-8px;
+            bottom:-6px;
+            left:30px;
+            overflow:hidden;
+            width:13px;
+            height:13px;
+            background:#E9FBE4;
+            border-bottom:1px solid #C9E9C0;
+            border-right:1px solid #C9E9C0;
+        }
+        .transform {
+            -webkit-transform:rotate(45deg);
+            -moz-transform:rotate(45deg);
+            -o-transform:rotate(45deg);
+            transform:rotate(45deg);
+        }
+    </style>
+</head>
+<body>
+<div class="triangle-css3 transform"></div>
+
+</body>
+</html>

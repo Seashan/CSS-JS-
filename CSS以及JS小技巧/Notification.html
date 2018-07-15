@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>notificcation</title>
+</head>
+<body>
+ <button onclick="createNotification()">显示通知</button>
+ <button onclick="closeNotification()">关闭通知</button>
+<script>
+    var NotificationTest ;
+    function createNotification(){
+        if(window.Notification.permission === "granted"){
+            NotificationTest = new Notification("简单文本通知",{
+                body:"通知内容"
+            })
+            NotificationTest.onshow = function (e) {
+                alert("通知被显示");
+            }
+            NotificationTest.onclose= function (e) {
+                alert("通知关闭");
+            }
+        }else if(window.Notification.permission === "default"){
+            window.Notification.requestPermission();
+        }
+    }
+    function closeNotification(){
+        window.Notification.close();
+    }
+</script>
+</body>
+</html>

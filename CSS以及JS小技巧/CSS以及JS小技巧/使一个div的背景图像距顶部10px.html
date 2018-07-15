@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        .div{
+            /*第一种方式利用background-orign以及padding的方式实现*/
+         /*   background-image:url('img1.JPG');
+            background-repeat: no-repeat;
+            background-origin: content-box;
+            width:200px;
+            height:200px;
+            padding:10px 0 0 25px;
+            border:1px solid red*/
+
+            /*第二种利用background-position实现*/
+            background:url("img1.JPG") no-repeat 15px 10px ;
+            width:200px;
+            height:200px;
+            border:1px solid red
+        }
+        a{
+            padding:25px
+        }
+    </style>
+</head>
+<body>
+ <div class="div"></div>
+<a href="#">如何增加某一个链接的可点击面积，而下划线仍然与链接一样长？</a>
+</body>
+</html>

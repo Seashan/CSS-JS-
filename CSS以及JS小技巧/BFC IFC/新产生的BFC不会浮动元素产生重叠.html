@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--水平方向上-->
+<div style="float:left;width:100px;border: solid 1px red;margin-right:50px;">floated</div>
+<!--生成新的BFC，浮动元素的margin-box和BFC元素的border-box相接触,下面的box中的border-Left将会和上面div的margin-right相接触-->
+<div style="width:200px;border: solid 1px blue;margin-left:100px;overflow:hidden;">gen new BFC balabala</div>
+
+
+<!--垂直方向上，将上面的屏蔽了之后在观察效果，以免两者之间相互影响，注意调整浏览器窗口的大小使得两个div元素垂直显示，上面的一个margin将会挨着下面一个元素的border-top-->
+<div style="float:left;width:100px;border: solid 1px red;margin-bottom:50px;">floated</div>
+<div style="width:200px;border: solid 1px blue;margin-top:100px;overflow:hidden;">gen new BFC balabala</div>
+</body>
+</html>

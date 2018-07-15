@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .box { display: flex; }
+        .box > div { background-color: blue; z-index: 1; }    /* 此时该div是层叠上下文元素，同时z-index生效 */
+        .box > div > img {
+            position: relative; z-index: -1; right: -150px;     /* 注意这里是负值z-index */
+        }
+    </style>
+</head>
+<body>
+<div class="box">
+    <div>
+        <img src="../images/1.jpg">
+    </div>
+</div>
+</body>
+</html>

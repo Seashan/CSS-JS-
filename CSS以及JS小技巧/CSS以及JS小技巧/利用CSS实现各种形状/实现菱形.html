@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>菱形</title>
+    <style>
+        /*可直接利用矩形进行旋转等transform，skew属性将其拉伸为平行四边形，rotate进行图形的旋转*/
+     .diamond{
+         margin:100px 300px;
+         transform:rotate(-30deg)
+     }
+        .angle1{
+            width:0px;
+            height:0px;
+            border:30px solid transparent;
+            border-bottom:30px solid red;
+
+        }
+        .angle2{
+            width:0px;
+            height:0px;
+            border:30px solid transparent;
+            border-top:30px solid red;
+        }
+        /*利用旋转生成菱形*/
+        .angle{
+            width:100px;
+            height:100px;
+            transform:rotate(-40deg);
+            transform:skew(10deg);
+            background:#669
+        }
+    </style>
+</head>
+<body>
+<div class="diamond">
+    <div class="angle1"></div>
+    <div class="angle2"></div>
+</div>
+
+<div class="angle"></div>
+</body>
+</html>

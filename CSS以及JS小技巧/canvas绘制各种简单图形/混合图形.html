@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>canvas</title>
+</head>
+<body>
+<canvas width="1000" height="1000" id="canvas"></canvas>
+<script type="text/javascript">
+    var canvas = document.getElementById("canvas");
+    var context = canvas.getContext("2d");
+    context.fillStyle = "#eeeeff";
+    context.fillRect(0,0,400,400);
+   var  oprtns = [
+        "source-over",
+        "destination-over",
+        "source-in",
+        "destination-in",
+        "source-out",
+        "destination-out",
+        "source-atop",
+        "destination-atop",
+        "lighter",
+        "xor",
+        "copy",]
+
+
+  /*  for(var i =0;i<oprtns.length;i++){*/
+        //context.translate(100,100);
+        context.fillStyle = "blue";
+        context.fillRect(10,10,60,60);
+        context.globalCompositeOperation = oprtns[10];
+        context.beginPath();
+        context.fillStyle = "red";
+        context.arc(60,60,30,0,Math.PI*2,false);
+        context.fill();
+  /*  }*/
+
+</script>
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>sharedWorked</title>
+</head>
+<body>
+  <div id="div"></div>
+<script type="text/javascript">
+    window.onload = function(){
+        var worker = new SharedWorker("sharedWorker.js")
+        var port = worker.port;
+        port.onmessage = function(ev){
+            div.innerHTML = ev.data;
+        }
+        port.start();
+    }
+
+</script>
+</body>
+</html>
